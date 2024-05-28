@@ -1,19 +1,18 @@
-function getNextParticipantNumber() {
-    // Get the current number from localStorage
-    let currentNumber = localStorage.getItem('currentParticipantNumber');
-    if (!currentNumber) {
-        currentNumber = 1; // Start from 1 if no number is stored
-    } else {
-        currentNumber = parseInt(currentNumber) + 1;
-    }
-    // Store the new number back to localStorage
-    localStorage.setItem('currentParticipantNumber', currentNumber);
-    return currentNumber;
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('undianForm');
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        generateImage();
+    });
+});
+
+function generateRandomParticipantNumber() {
+    return Math.floor(1000 + Math.random() * 9000); // Generate a random 4-digit number
 }
 
 function generateImage() {
     const name = document.getElementById('name').value;
-    const number = getNextParticipantNumber(); // Get the next participant number
+    const number = generateRandomParticipantNumber(); // Get a random 4-digit participant number
     const classOrCitizen = document.getElementById('classOrCitizen').value;
     const canvas = document.getElementById('undianCanvas');
     const context = canvas.getContext('2d');
@@ -36,16 +35,10 @@ function generateImage() {
         // Draw text on canvas
         context.fillText("Nama: " + name, canvas.width / 2, canvas.height / 2 - 30);
         context.fillText("Kelas/Warga: " + classOrCitizen, canvas.width / 2, canvas.height / 2);
-        context.fillText("Nomor Undian: " + number, canvas.width / 2, canvas.height / 2 + 30);
+        context.fillText("Nomor Pengunjung : " + number, canvas.width / 2, canvas.height / 2 + 30);
 
         // Create download link
         const downloadLink = document.getElementById('downloadLink');
         downloadLink.href = canvas.toDataURL('image/png');
     }
 }
-
-// Add event listener to button click
-document.getElementById('undianForm').addEventListener('submit', function (e) {
-    e.preventDefault();
-    generateImage();
-});
