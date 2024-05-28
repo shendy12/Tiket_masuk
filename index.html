@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Tiket Image</title>
+    <link rel="stylesheet" href="./assets/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Generate Undian Image</h1>
+        <form id="undianForm">
+            <label for="name">Nama:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="classOrCitizen">Kelas / warga:</label>
+            <input type="text" id="classOrCitizen" name="classOrCitizen" required>
+            <button type="button" onclick="generateImage()">Generate Image</button>
+        </form>
+        <canvas id="undianCanvas" width="400" height="200"></canvas>
+        <a id="downloadLink" download="undian.png">Download Image</a>
+    </div>
+    <script src="./assets/js/scrip.js"></script>
+</body>
+</html>
